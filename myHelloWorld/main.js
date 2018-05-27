@@ -20,3 +20,31 @@ function predict(x) {
     }
   );
 }
+
+/** loss function */
+
+function loss(predictions, labels) {
+  const meanSquareError = predictions.sub(labels).square().mean()
+}
+
+
+
+
+/** training loop */
+function train(xs, ys, numIteration = 75) {
+
+  /** Optimize: SGD */
+  const learningRate = 0.5;
+  const optimizer = tf.train.sgd(learningRate);
+
+  for (let index = 0; index < numIteration; index++) {
+    optimizer.minimize(
+      () => {
+        const predsYs = predict(xs);
+        return loss(predsYs, ys);
+      }
+    );
+
+  }
+
+}
